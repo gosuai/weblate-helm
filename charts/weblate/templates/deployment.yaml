@@ -42,9 +42,9 @@ spec:
             - name: POSTGRES_DATABASE
               value: "{{ .Values.postgresql.postgresqlDatabase }}"
             - name: POSTGRES_HOST
-              value: "{{ include "weblate.postgresql.fullname" . }}"
+              value: "{{ .Values.postgresql.host }}"
             - name: POSTGRES_PORT
-              value: "{{ .Values.postgresql.service.port }}"
+              value: "{{ .Values.postgresql.port }}"
             - name: POSTGRES_USER
               valueFrom:
                 secretKeyRef:
@@ -56,7 +56,7 @@ spec:
                   name: {{ include "weblate.fullname" . }}
                   key: postgresql-password
             - name: REDIS_HOST
-              value: "{{ include "weblate.redis.fullname" . }}"
+              value: "{{ .Values.redis.host }}"
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
